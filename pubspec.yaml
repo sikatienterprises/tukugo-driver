@@ -1,0 +1,50 @@
+name: tukugo
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  google_maps_flutter: ^2.5.0
+  geocoding: ^2.1.0  # For converting address text to coordinates
+  flutter:
+    sdk: flutter
+  intl_phone_field: ^3.2.0
+  go_router: ^5.2.0  
+  cupertino_icons: ^1.0.8
+  image_picker: ^1.1.2
+  path_provider: ^2.1.5
+  smooth_page_indicator: ^1.1.0  
+  flutter_svg: ^2.0.17
+  intl: ^0.20.2
+  dotted_border: ^2.0.0+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  # flutter_lints: ^5.0.0  # Uncomment if needed
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/location.svg
+    - assets/location.png
+    - assets/location_icon.png
+    - assets/locationArrow.png
+    # Removed PNGs, only SVGs are used
+    - assets/vehicalselect.svg
+    - assets/lovationHeader.svg
+    - assets/locationArrow.svg
+    - assets/locationAccess.svg
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/TukugoLogo.jpg"
+  adaptive_icon_background: "#FFFFFF"
+  min_sdk_android: 21
