@@ -34,14 +34,16 @@ flutter:
   assets:
     - assets/
     - assets/location.svg
+    - assets/Homecenter.png
     - assets/location.png
     - assets/location_icon.png
     - assets/locationArrow.png
-    # Removed PNGs, only SVGs are used
     - assets/vehicalselect.svg
     - assets/lovationHeader.svg
     - assets/locationArrow.svg
     - assets/locationAccess.svg
+    - assets/driverprofile.svg
+   
 flutter_launcher_icons:
   android: true
   ios: true

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tukugo/routes/route_constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,8 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
               ).pushNamed(MyAppRouteConstants.verification_screen01RouteName);
             },
-            child: const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/Profile.png'),
+            child: CircleAvatar(
+              // backgroundImage: AssetImage('assets/driverprofile.svg'),
+              child: ClipOval(
+                child: SvgPicture.asset(
+                  'assets/driverprofile.svg',
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              backgroundColor: Color(0xFFF3EFFF),
             ),
           ),
         ),
@@ -157,12 +167,12 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
               children: [
-                Image.asset(
-                  'assets/images/dashimage.jpeg',
-                  height: 200,
+                Image.network(
+                  'https://ibb.co/399c6mzM',
+                  
                 ),
-                const SizedBox(height: 30),
-                const Text(
+                SizedBox(height: 30),
+                Text(
                   "Good morning!",
                   style: TextStyle(
                     fontSize: 22,
@@ -170,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 Text(
                   "Time to kick off the day and start Earning.",
                   textAlign: TextAlign.center,
@@ -435,7 +445,7 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/images/Profile.png'),
             ),

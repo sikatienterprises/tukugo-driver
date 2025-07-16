@@ -53,7 +53,7 @@ class MyAppRouter {
       
       GoRoute(
         name: MyAppRouteConstants.home_screenRouteName,
-        path: '/home_screen',
+        path: '/home',
         builder: (context, state) => HomeScreen(),
       ),
     ],
