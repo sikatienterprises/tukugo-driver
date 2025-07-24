@@ -45,6 +45,7 @@ flutter:
     - assets/locationArrow.svg
     - assets/locationAccess.svg
     - assets/driverprofile.svg
+
    
 flutter_launcher_icons:
   android: true

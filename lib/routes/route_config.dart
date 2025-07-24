@@ -7,6 +7,8 @@ import 'package:tukugo/auth/vehicle_selection_page.dart';
 import 'package:tukugo/auth/verification_screen01.dart';
 import 'package:tukugo/routes/route_constants.dart';
 import 'package:tukugo/screen/home_screen.dart';
+import 'package:tukugo/screen/paymentPage.dart';
+
 
 
 
@@ -55,6 +57,11 @@ class MyAppRouter {
         name: MyAppRouteConstants.home_screenRouteName,
         path: '/home',
         builder: (context, state) => HomeScreen(),
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.paymentPageRouteName,
+        path: '/payment',
+        builder: (context, state) => const PaymentScreen(),
       ),
     ],
   );

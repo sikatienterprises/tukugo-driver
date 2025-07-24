@@ -12,4 +12,9 @@ class MyAppRouteConstants {
   static const String home_screenRouteName = 'home_screen';
  
   static String locationRouteName = 'locationdriver';
+  static const String paymentPageRouteName = 'paymentPage';
+
+
+
+  
 }
