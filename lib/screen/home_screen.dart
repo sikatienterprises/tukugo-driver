@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tukugo/routes/route_constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,12 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
               ).pushNamed(MyAppRouteConstants.verification_screen01RouteName);
             },
-            child: const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/Profile.png'),
-            ),
+            // Removed CircleAvatar as requested
           ),
         ),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             : Alignment.centerLeft,
                         child: Container(
                           width: 20,
-                          height: 20,
+                          height: 40,
                           margin: const EdgeInsets.all(2),
                           decoration: const BoxDecoration(
                             color: Colors.white,
@@ -150,41 +151,54 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          const Spacer(),
-
-          // Main illustration and text
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/dashimage.jpeg',
-                  height: 200,
+          // Show map if ON DUTY, else show normal content
+          if (isOnDuty)
+            SizedBox(
+              height: 300,
+              child: FlutterMap(
+                options: MapOptions(
+                  center: LatLng(28.6139, 77.2090), // Example: New Delhi
+                  zoom: 13.0,
                 ),
-                const SizedBox(height: 30),
-                const Text(
-                  "Good morning!",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
+                children: [
+                  TileLayer(
+                    urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    subdomains: ['a', 'b', 'c'],
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  "Time to kick off the day and start Earning.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w400,
+                  // You can add markers here
+                ],
+              ),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                children: [
+                  Image.network(
+                    'https://i.ibb.co/C33QCK2M/7610-removebg-preview.png',
                   ),
-                ),
-              ],
+                  SizedBox(height: 30),
+                  Text(
+                    "Good morning!",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Time to kick off the day and start Earning.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          const Spacer(),
 
           // Bottom navigation
           Container(
@@ -435,7 +449,7 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/images/Profile.png'),
             ),

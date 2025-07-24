@@ -21,6 +21,8 @@ dependencies:
   flutter_svg: ^2.0.17
   intl: ^0.20.2
   dotted_border: ^2.0.0+3
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
 
 dev_dependencies:
   flutter_test:
@@ -34,14 +36,17 @@ flutter:
   assets:
     - assets/
     - assets/location.svg
+    - assets/Homecenter.png
     - assets/location.png
     - assets/location_icon.png
     - assets/locationArrow.png
-    # Removed PNGs, only SVGs are used
     - assets/vehicalselect.svg
     - assets/lovationHeader.svg
     - assets/locationArrow.svg
     - assets/locationAccess.svg
+    - assets/driverprofile.svg
+
+   
 flutter_launcher_icons:
   android: true
   ios: true
