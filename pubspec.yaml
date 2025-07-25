@@ -18,7 +18,8 @@ dependencies:
   image_picker: ^1.1.2
   path_provider: ^2.1.5
   smooth_page_indicator: ^1.1.0  
-  flutter_svg: ^2.0.17
+  flutter_svg: ^1.1.6
+  shared_preferences: ^2.1.0
   intl: ^0.20.2
   dotted_border: ^2.0.0+3
   flutter_map: ^6.1.0
@@ -45,6 +46,8 @@ flutter:
     - assets/locationArrow.svg
     - assets/locationAccess.svg
     - assets/driverprofile.svg
+    - assets/paymentCenter.svg
+    - assets/paymentCenter.png
 
    
 flutter_launcher_icons:
