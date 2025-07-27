@@ -8,17 +8,12 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(175, 175, 175, 0.1),
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Payment',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         centerTitle: true,
         actions: [
