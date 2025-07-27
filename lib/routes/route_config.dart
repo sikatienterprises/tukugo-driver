@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tukugo/auth/aadhar.dart';
 import 'package:tukugo/auth/driving_license.dart';
@@ -5,63 +6,174 @@ import 'package:tukugo/auth/location.dart';
 import 'package:tukugo/auth/vehicle_rc.dart';
 import 'package:tukugo/auth/vehicle_selection_page.dart';
 import 'package:tukugo/auth/verification_screen01.dart';
+import 'package:tukugo/components/bottom_navbar.dart';
 import 'package:tukugo/routes/route_constants.dart';
+import 'package:tukugo/screen/history_screen.dart';
 import 'package:tukugo/screen/home_screen.dart';
-import 'package:tukugo/screen/paymentPage.dart';
+import 'package:tukugo/screen/notification_screen.dart';
+import 'package:tukugo/screen/payment/paymentPage.dart';
+import 'package:tukugo/screen/payment/qr_screen.dart';
+import 'package:tukugo/screen/payment/success_screen.dart';
 
+// class MyAppRouter {
+//   GoRouter router = GoRouter(
+//     initialLocation: '/', // Ensure initialLocation points to SplashScreen
+//     routes: [
+// GoRoute(
+//   name: MyAppRouteConstants.vehicle_selection_pageRouteName,
+//   path: '/',
+//   builder: (context, state) =>
+//       VehicleSelectionPage(), // Show VehicleSelectionPage
+// ),
 
+//       GoRoute(
+//         name: MyAppRouteConstants.layout,
+//         path: '/',
+//         builder: (context, state) => Layout(),
+//       ),
 
+//       GoRoute(
+//         name: MyAppRouteConstants.verification_screen01RouteName,
+//         path: '/verificationscreen01',
+//         builder: (context, state) => VerificationScreen01(),
+//       ),
+
+//       GoRoute(
+//         name: MyAppRouteConstants.driving_licenseRouteName,
+//         path: '/driving_license',
+//         builder: (context, state) => LicenseUploadPage(),
+//       ),
+//       GoRoute(
+//         name: MyAppRouteConstants.locationRouteName,
+//         path: '/location/access',
+//         builder: (context, state) => LocationAccessScreen(),
+//       ),
+
+//       GoRoute(
+//         name: MyAppRouteConstants.vehicle_rcRouteName,
+//         path: '/vehiclerc',
+//         builder: (context, state) => VehicleRc(),
+//       ),
+//       GoRoute(
+//         name: MyAppRouteConstants.aadharRouteName,
+//         path: '/aadhar',
+//         builder: (context, state) => AadhaarUploadPage(),
+//       ),
+
+//       GoRoute(
+//         name: MyAppRouteConstants.home_screenRouteName,
+//         path: '/home',
+//         builder: (context, state) => HomeScreen(),
+//       ),
+
+//       GoRoute(
+//         path: '/payment',
+//         name: MyAppRouteConstants.paymentPageRouteName,
+//         builder: (context, state) => const PaymentScreen(),
+//         routes: [
+//           GoRoute(
+//             path: 'qr',
+//             builder: (context, state) => QrScreen(),
+//           ),
+//           GoRoute(
+//             path: 'payment-success',
+//             builder: (context, state) => PaymentSuccessScreen(),
+//           ),
+//         ],
+//       ),
+//     ],
+//   );
+// }
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 class MyAppRouter {
-  GoRouter router = GoRouter(
-    initialLocation: '/', // Ensure initialLocation points to SplashScreen
+  final router = GoRouter(
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: '/',
     routes: [
-      // SplashScreen route
+      // ✅ Auth/onboarding — outside layout
       GoRoute(
-        name: MyAppRouteConstants.vehicle_selection_pageRouteName,
         path: '/',
-        builder: (context, state) =>
-            VehicleSelectionPage(), // Show VehicleSelectionPage
+        name: MyAppRouteConstants.vehicle_selection_pageRouteName,
+        builder: (context, state) => VehicleSelectionPage(),
       ),
-
-      
       GoRoute(
-        name: MyAppRouteConstants.verification_screen01RouteName,
         path: '/verificationscreen01',
+        name: MyAppRouteConstants.verification_screen01RouteName,
         builder: (context, state) => VerificationScreen01(),
       ),
-    
       GoRoute(
-        name: MyAppRouteConstants.driving_licenseRouteName,
         path: '/driving_license',
+        name: MyAppRouteConstants.driving_licenseRouteName,
         builder: (context, state) => LicenseUploadPage(),
       ),
       GoRoute(
-        name: MyAppRouteConstants.locationRouteName,
         path: '/location/access',
+        name: MyAppRouteConstants.locationRouteName,
         builder: (context, state) => LocationAccessScreen(),
       ),
-     
       GoRoute(
-        name: MyAppRouteConstants.vehicle_rcRouteName,
         path: '/vehiclerc',
+        name: MyAppRouteConstants.vehicle_rcRouteName,
         builder: (context, state) => VehicleRc(),
       ),
       GoRoute(
-        name: MyAppRouteConstants.aadharRouteName,
         path: '/aadhar',
+        name: MyAppRouteConstants.aadharRouteName,
         builder: (context, state) => AadhaarUploadPage(),
       ),
-      
+
+      // Main App with Bottom Navigation as layout starts here ( Atul ).
+      // if want to overlay a class then use (context: Navigator.of(context, rootNavigator: true).context) in context of the class
       GoRoute(
-        name: MyAppRouteConstants.home_screenRouteName,
-        path: '/home',
-        builder: (context, state) => HomeScreen(),
+        parentNavigatorKey: _rootNavigatorKey, // ✅ overlays
+        path: '/payment/qr',
+        builder: (context, state) => QrScreen(),
       ),
       GoRoute(
-        name: MyAppRouteConstants.paymentPageRouteName,
-        path: '/payment',
-        builder: (context, state) => const PaymentScreen(),
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/payment/success',
+        builder: (context, state) => PaymentSuccessScreen(),
+      ),
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return Layout(child: child); // Bottom nav layout
+        },
+        routes: [
+          GoRoute(
+            path: '/home',
+            name: MyAppRouteConstants.home_screenRouteName,
+            builder: (context, state) => const HomeScreen(),
+          ),
+          GoRoute(
+            path: '/payment',
+            name: MyAppRouteConstants.paymentPageRouteName,
+            builder: (context, state) => const PaymentScreen(),
+            // routes: [
+            //   GoRoute(
+            //     path: 'qr', // 👈 becomes /payment/qr
+            //     builder: (context, state) => QrScreen(),
+            //   ),
+            //   GoRoute(
+            //     path: 'payment-success',
+            //     builder: (context, state) => PaymentSuccessScreen(),
+            //   ),
+            // ],
+          ),
+          GoRoute(
+            path: '/ride-history',
+            name: MyAppRouteConstants.rideHistory,
+            builder: (context, state) => const PaymentHistory(),
+          ),
+          GoRoute(
+            path: '/notifications',
+            name: MyAppRouteConstants.notifications,
+            builder: (context, state) => const Notifications(),
+          ),
+        ],
       ),
     ],
   );
