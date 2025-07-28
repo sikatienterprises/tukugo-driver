@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tukugo/routes/route_constants.dart';
+import 'package:tukugo/screen/drawer/profile_drawer.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,50 +21,80 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onTap: () {
-              GoRouter.of(
-                context,
-              ).pushNamed(MyAppRouteConstants.verification_screen01RouteName);
-            },
-            // Removed CircleAvatar as requested
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(76), // Increased height
+        child: SafeArea(
+          child: Container(
+            color: Colors.white,
+            padding:
+                const EdgeInsets.only(left: 56, top: 4, bottom: 4, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Ride",
+                        style: TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 0.8),
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                            height: 0.8 // Reduced line height
+                            ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Safe ",
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w400,
+                              height: 1.1, // Reduced line height
+                            ),
+                          ),
+                          Text(
+                            "and ",
+                            style: TextStyle(
+                              color: Color.fromRGBO(0, 0, 0, 0.8),
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                              // Reduced line height
+                            ),
+                          ),
+                          Text(
+                            "Secure",
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w400,
+                              height: 1.1, // Reduced line height
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Builder(
+                  builder: (context) => InkWell(
+                    child: Icon(Icons.menu, color: Colors.black, size: 30),
+                    onTap: () {
+                      Navigator.of(context, rootNavigator: true).push(
+                        MaterialPageRoute(
+                            builder: (context) => const ProfileScreen()),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Ride",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Text(
-              "Safe and Secure",
-              style: TextStyle(
-                color: Colors.green,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Column(
         children: [
@@ -71,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             width: double.infinity,
             color: Colors.blue,
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -79,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Today's Returns",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -87,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   "₹0",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -149,8 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   top: 20,
                   left: MediaQuery.of(context).size.width / 3.2,
                   child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.grey.shade300),
@@ -159,15 +190,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          isOnDuty ? "ON DUTY " : "OFF DUTY",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
                         GestureDetector(
                           onTap: () {
                             setState(() {
@@ -198,6 +220,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          isOnDuty ? "ON DUTY " : "OFF DUTY",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.black87,
                           ),
                         ),
                       ],
