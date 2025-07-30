@@ -35,6 +35,8 @@ flutter:
 
   assets:
     - assets/
+    - assets/QR.png
+    - assets/payment.png
     - assets/location.svg
     - assets/Homecenter.png
     - assets/location.png
