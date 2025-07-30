@@ -35,6 +35,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/ProfilePic.jpg
     - assets/QR.png
     - assets/payment.png
     - assets/location.svg
@@ -47,6 +48,8 @@ flutter:
     - assets/locationArrow.svg
     - assets/locationAccess.svg
     - assets/driverprofile.svg
+    - assets/flags/
+    - assets/flags/india.png
 
    
 flutter_launcher_icons:
