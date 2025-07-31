@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tukugo/screen/drawer/aboutUs.dart';
 import 'package:tukugo/screen/drawer/wallet.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -81,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                   'Wallet',
                   onTap: () {
                     Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute(builder: (context) => const MyWallet()),
+                      MaterialPageRoute(builder: (context) => MyWallet()),
                     );
                   },
                 ),
@@ -89,7 +90,15 @@ class ProfileScreen extends StatelessWidget {
                 _buildMenuItem(Icons.chat_bubble_outline, 'Complain'),
                 _buildMenuItem(Icons.card_giftcard_outlined, 'Offers/Referral'),
                 _buildMenuItem(Icons.lock_outline, 'Change password'),
-                _buildMenuItem(Icons.info_outline, 'About Us'),
+                _buildMenuItem(
+                  Icons.info_outline,
+                  'About Us',
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute(builder: (context) => const AboutUs()),
+                    );
+                  },
+                ),
                 _buildMenuItem(Icons.help_outline, 'Help and Support'),
                 _buildMenuItem(Icons.logout, 'Logout'),
               ],

@@ -8,6 +8,8 @@ import 'package:tukugo/auth/vehicle_selection_page.dart';
 import 'package:tukugo/auth/verification_screen01.dart';
 import 'package:tukugo/components/bottom_navbar.dart';
 import 'package:tukugo/routes/route_constants.dart';
+import 'package:tukugo/screen/drawer/aboutUs.dart';
+import 'package:tukugo/screen/drawer/wallet.dart';
 import 'package:tukugo/screen/history_screen.dart';
 import 'package:tukugo/screen/home_screen.dart';
 import 'package:tukugo/screen/notification_screen.dart';
@@ -91,7 +93,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 class MyAppRouter {
   final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/',
+    initialLocation: '/home',
     routes: [
       // ✅ Auth/onboarding — outside layout
       GoRoute(
@@ -136,6 +138,16 @@ class MyAppRouter {
         parentNavigatorKey: _rootNavigatorKey,
         path: '/payment/success',
         builder: (context, state) => PaymentSuccessScreen(),
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.aboutUs,
+        path: '/aboutus',
+        builder: (context, state) => AboutUs(),
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.wallet,
+        path: '/wallet',
+        builder: (context, state) => MyWallet(),
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

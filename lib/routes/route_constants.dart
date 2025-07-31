@@ -17,4 +17,6 @@ class MyAppRouteConstants {
   static const String layout = 'layout';
   static const String rideHistory = 'rideHustory';
   static const String notifications = 'notifications';
+  static const String aboutUs = 'aboutUs';
+  static const String wallet = 'wallet';
 }
