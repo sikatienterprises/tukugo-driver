@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-// import 'package:go_router/go_router.dart';
-// import 'package:tukugo/routes/route_constants.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tukugo/routes/route_constants.dart';
 import 'package:tukugo/screen/drawer/profile_drawer.dart';
+import 'package:tukugo/screen/otp-startRide.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool showReachPickupCard = false; // Show the reach pickup card
   bool showGuidedMapsCard = false; // Show the guided maps card
   bool showGoToDropCard = false; // Show the go to drop card
+  bool showCompleteRideCard = false; // Show the complete ride card after OTP verification
 
   @override
   Widget build(BuildContext context) {
@@ -764,11 +766,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Expanded(
                                 child: ElevatedButton.icon(
-                                  onPressed: () {
-                                    // Start ride action
+                                  onPressed: () async {
                                     setState(() {
                                       showGoToDropCard = false;
                                     });
+                                    // Wait for OTP screen result
+                                    final result = await Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => OtpStartride(),
+                                      ),
+                                    );
+                                    if (result == 'otp_verified') {
+                                      setState(() {
+                                        showCompleteRideCard = true;
+                                      });
+                                    }
                                   },
                                   icon: const Icon(Icons.arrow_forward, color: Colors.white),
                                   label: const Text('Start Ride'),
@@ -780,6 +792,151 @@ class _HomeScreenState extends State<HomeScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
+
+                // Complete Ride Card Overlay
+                if (showCompleteRideCard)
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.amber[700],
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.08),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Icon(Icons.keyboard_arrow_up_rounded, color: Colors.white, size: 28),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Go to drop',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.08),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.location_on, color: Colors.black, size: 28),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Text(
+                                            'Ulsoor Lake',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Container(
+                                            width: 8,
+                                            height: 8,
+                                            decoration: const BoxDecoration(
+                                              color: Colors.amber,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 2),
+                                      const Text(
+                                        '32,ulsoor road,Halsuru.\nYepIla garden',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      showCompleteRideCard = false;
+                                    });
+                                    // TODO: Add ride completion logic here (e.g., show confirmation, navigate, etc.)
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.brown,
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(Icons.arrow_forward, color: Colors.white),
+                                      SizedBox(width: 8),
+                                      Text('Complete ride'),
+                                    ],
                                   ),
                                 ),
                               ),

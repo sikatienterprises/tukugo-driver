@@ -168,7 +168,8 @@ class _OtpStartrideState extends State<OtpStartride> {
                           onPressed: () {
                             String otp = _controllers.map((c) => c.text).join();
                             if (otp.length == 5) {
-                              // Handle verification
+                              // After successful verification, pop with result
+                              Navigator.of(context).pop('otp_verified');
                             }
                           },
                           style: ElevatedButton.styleFrom(
