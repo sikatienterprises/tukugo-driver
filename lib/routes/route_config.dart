@@ -16,6 +16,7 @@ import 'package:tukugo/screen/notification_screen.dart';
 import 'package:tukugo/screen/payment/paymentPage.dart';
 import 'package:tukugo/screen/payment/qr_screen.dart';
 import 'package:tukugo/screen/payment/success_screen.dart';
+import 'package:tukugo/screen/otp-startRide.dart';
 
 // class MyAppRouter {
 //   GoRouter router = GoRouter(
@@ -184,6 +185,11 @@ class MyAppRouter {
             path: '/notifications',
             name: MyAppRouteConstants.notifications,
             builder: (context, state) => const Notifications(),
+          ),
+          GoRoute(
+            path: '/otp/start/ride',
+            name: MyAppRouteConstants.otpStartride,
+            builder: (context, state) => OtpStartride(),
           ),
         ],
       ),

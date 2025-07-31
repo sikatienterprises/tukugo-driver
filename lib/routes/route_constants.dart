@@ -19,4 +19,5 @@ class MyAppRouteConstants {
   static const String notifications = 'notifications';
   static const String aboutUs = 'aboutUs';
   static const String wallet = 'wallet';
+  static const String otpStartride = 'otpStartride';
 }
