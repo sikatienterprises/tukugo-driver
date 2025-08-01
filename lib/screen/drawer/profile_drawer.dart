@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tukugo/screen/drawer/aboutUs.dart';
 import 'package:tukugo/screen/drawer/wallet.dart';
+import 'package:tukugo/screen/drawer/change-password.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -89,7 +90,11 @@ class ProfileScreen extends StatelessWidget {
                 _buildMenuItem(Icons.build_outlined, 'Mechanic'),
                 _buildMenuItem(Icons.chat_bubble_outline, 'Complain'),
                 _buildMenuItem(Icons.card_giftcard_outlined, 'Offers/Referral'),
-                _buildMenuItem(Icons.lock_outline, 'Change password'),
+                _buildMenuItem(Icons.lock_outline, 'Change password', onTap: () => 
+                  Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+                  ),
+                  ),
                 _buildMenuItem(
                   Icons.info_outline,
                   'About Us',

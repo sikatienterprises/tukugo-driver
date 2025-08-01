@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tukugo/routes/route_constants.dart';
 import 'package:tukugo/screen/drawer/profile_drawer.dart';
 import 'package:tukugo/screen/otp-startRide.dart';
+import 'package:tukugo/screen/drawer/change-password.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -754,7 +755,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28),
+                                GestureDetector(
+                                  onTap: () => context.go(
+                                    '/auth/drawer/chat',
+                                  ),
+                                  child:  Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28)),
                               ],
                             ),
                           ),
@@ -903,7 +908,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28),
+                               GestureDetector(
+                                onTap: () => context.go(
+                                  '/auth/drawer/chat',
+                                ),
+                                child: Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28)),
                               ],
                             ),
                           ),

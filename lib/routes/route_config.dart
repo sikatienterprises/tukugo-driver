@@ -17,6 +17,12 @@ import 'package:tukugo/screen/payment/paymentPage.dart';
 import 'package:tukugo/screen/payment/qr_screen.dart';
 import 'package:tukugo/screen/payment/success_screen.dart';
 import 'package:tukugo/screen/otp-startRide.dart';
+import 'package:tukugo/screen/drawer/change-password.dart';
+import 'package:tukugo/screen/drawer/chat.dart';
+import 'package:tukugo/screen/drawer/transaction.dart';
+import 'package:tukugo/screen/drawer/contactUs.dart';
+import 'package:tukugo/screen/drawer/method_selection.dart';
+import 'package:tukugo/screen/drawer/add_money.dart';
 
 // class MyAppRouter {
 //   GoRouter router = GoRouter(
@@ -186,13 +192,44 @@ class MyAppRouter {
             name: MyAppRouteConstants.notifications,
             builder: (context, state) => const Notifications(),
           ),
+        ],
+      ),
           GoRoute(
             path: '/otp/start/ride',
             name: MyAppRouteConstants.otpStartride,
             builder: (context, state) => OtpStartride(),
           ),
-        ],
-      ),
+          GoRoute(
+            path: '/auth/drawer/changepassword',
+            name: MyAppRouteConstants.ChangePasswordScreen,
+            builder: (context, state) => ChangePasswordScreen(),
+          ),
+          GoRoute(
+            path: '/auth/drawer/chat',
+            name: MyAppRouteConstants.chat,
+            builder: (context, state) => ChatScreen(),
+          ),
+          GoRoute(
+            path: '/auth/drawer/transactions',
+            name: MyAppRouteConstants.transactions,
+            builder: (context, state) => TransactionScreen(),
+          ),
+          GoRoute(
+            path: '/auth/drawer/contactus',
+            name: MyAppRouteConstants.contactUs,
+            builder: (context, state) => ContactUsScreen(),
+          ),
+          GoRoute(
+            path: '/auth/drawer/paymentmethod',
+            name: MyAppRouteConstants.paymentMethodSelection,
+            builder: (context, state) => PaymentMethodScreen(),
+          ),
+          GoRoute(
+            path: '/auth/drawer/addmoney',
+            name: MyAppRouteConstants.addMoney,
+            builder: (context, state) => AddMoneyPage(),
+          ),
     ],
+  
   );
 }

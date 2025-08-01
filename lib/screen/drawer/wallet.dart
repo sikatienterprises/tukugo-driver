@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tukugo/routes/route_constants.dart';
 
 class MyWallet extends StatelessWidget {
   @override
@@ -71,24 +73,27 @@ class MyWallet extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                        Container(
-                          width: 168,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: Colors.blue, // Blue color border
-                              width: 2, // 2 pixels wide
+                      GestureDetector(
+                        onTap: () => context.go('/auth/drawer/addmoney'),
+                          child: Container(
+                            width: 168,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.blue, // Blue color border
+                                width: 2, // 2 pixels wide
+                              ),
                             ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Add Money',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                            child: Center(
+                              child: Text(
+                                'Add Money',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
@@ -189,12 +194,18 @@ class MyWallet extends StatelessWidget {
                             color: Colors.black87,
                           ),
                         ),
-                        Text(
-                          'See All',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF4A90E2),
-                            fontWeight: FontWeight.w500,
+                        GestureDetector(
+                          onTap: () => context.go(
+                             '/auth/drawer/transactions',
+                          ),
+                          child: Text(
+                            'See All',
+                           
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF4A90E2),
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ],
