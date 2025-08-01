@@ -91,6 +91,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            // old password
             _buildPasswordField(
               controller: _oldPasswordController,
               hint: 'Old Password',
@@ -118,7 +119,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle password change logic
+// change password logic
                   print("Old: ${_oldPasswordController.text}");
                   print("New: ${_newPasswordController.text}");
                   print("Confirm: ${_confirmPasswordController.text}");
