@@ -20,10 +20,11 @@ class MyAppRouteConstants {
   static const String aboutUs = 'aboutUs';
   static const String wallet = 'wallet';
   static const String otpStartride = 'otpStartride';
-  static const String ChangePasswordScreen= 'changePassword';
+  static const String ChangePasswordScreen = 'changePassword';
   static const String chat = 'chat';
-  static const String transactions= 'transactions';
+  static const String transactions = 'transactions';
   static const String contactUs = 'contactUs';
   static const String paymentMethodSelection = 'paymentMethod';
   static const String addMoney = 'addMoney';
+  static const String profileScreen = 'profileScreen';
 }
