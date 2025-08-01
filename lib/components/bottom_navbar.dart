@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tukugo/screen/drawer/profile_drawer.dart';
 import 'package:tukugo/screen/history_screen.dart';
 import 'package:tukugo/screen/home_screen.dart';
 import 'package:tukugo/screen/notification_screen.dart';
-import 'package:tukugo/screen/payment/paymentPage.dart';
 
 class BottomNavPainter extends CustomPainter {
   final int selectedIndex;
@@ -33,9 +33,9 @@ class _LayoutState extends State<Layout> {
   int currentPage = 0;
   List<Widget> pages = const [
     HomeScreen(),
-    PaymentScreen(),
     PaymentHistory(),
-    Notifications()
+    Notifications(),
+    ProfileScreen(),
   ];
   int selectedIndex = 0;
   @override
@@ -75,15 +75,7 @@ class _LayoutState extends State<Layout> {
                     },
                   ),
                   // Payment/Pie Chart
-                  _buildNavItem(
-                    icon: Icons.pie_chart_outline_rounded,
-                    index: 1,
-                    selectedIndex: selectedIndex,
-                    onTap: () {
-                      selectedIndex = 1;
-                      context.go('/payment');
-                    },
-                  ),
+
                   // History
                   _buildNavItem(
                     icon: Icons.history,
@@ -102,6 +94,24 @@ class _LayoutState extends State<Layout> {
                     onTap: () {
                       selectedIndex = 3;
                       context.go('/notifications');
+                    },
+                  ),
+                  // _buildNavItem(
+                  //   icon: Icons.pie_chart_outline_rounded,
+                  //   index: 1,
+                  //   selectedIndex: selectedIndex,
+                  //   onTap: () {
+                  //     selectedIndex = 1;
+                  //     context.go('/payment');
+                  //   },
+                  // ),
+                  _buildNavItem(
+                    icon: Icons.person,
+                    index: 1,
+                    selectedIndex: selectedIndex,
+                    onTap: () {
+                      selectedIndex = 1;
+                      context.go('/home/profile');
                     },
                   ),
                 ],
