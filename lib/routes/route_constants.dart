@@ -26,4 +26,13 @@ class MyAppRouteConstants {
   static const String contactUs = 'contactUs';
   static const String paymentMethodSelection = 'paymentMethod';
   static const String addMoney = 'addMoney';
+  static const String loginSplashScreen= 'loginSplashScreen';
+  static const String setPasswordRouteName = 'setPasswordRouteName';
+  static const String phoneVerificationRouteName = 'phoneVerificationRouteName';
+  static const String otpResetPasswordRouteName = 'otpResetPasswordRouteName';
+  static const String registerRouteName= 'registerRouteName';
+  static const String loginRouteName = 'loginRouteName';
+  static const String OpenSplashRouteName = 'OpenSplashScreen';
+  static const String profileScreen = 'profileScreen';
 }
+

@@ -23,6 +23,14 @@ import 'package:tukugo/screen/drawer/transaction.dart';
 import 'package:tukugo/screen/drawer/contactUs.dart';
 import 'package:tukugo/screen/drawer/method_selection.dart';
 import 'package:tukugo/screen/drawer/add_money.dart';
+import 'package:tukugo/screen/splash_screen.dart';
+import 'package:tukugo/screen/phone_verification_screen.dart';
+import 'package:tukugo/screen/otp-resetPassword.dart';
+import 'package:tukugo/screen/set_password_screen.dart';
+import 'package:tukugo/auth/login_screen.dart';
+import 'package:tukugo/auth/register_screen.dart';
+import 'package:tukugo/screen/open-splash.dart';
+import 'package:tukugo/screen/drawer/profile_drawer.dart';
 
 // class MyAppRouter {
 //   GoRouter router = GoRouter(
@@ -229,6 +237,42 @@ class MyAppRouter {
             path: '/auth/drawer/addmoney',
             name: MyAppRouteConstants.addMoney,
             builder: (context, state) => AddMoneyPage(),
+          ),
+
+        GoRoute(
+            path: '/login/splash',
+            name: MyAppRouteConstants.loginSplashScreen,
+            builder: (context, state) => SplashScreen(),
+          ),
+          GoRoute(
+            path: '/login/set-password',
+            name: MyAppRouteConstants.setPasswordRouteName,
+            builder: (context, state) => SetPasswordScreen(),
+          ),
+          GoRoute(
+            path: '/login/OTP/reset-password',
+            name: MyAppRouteConstants.otpResetPasswordRouteName,
+            builder: (context, state) => OtpResetpassword(),
+          ),
+          GoRoute(
+            path: '/auth/phoneverification',
+            name: MyAppRouteConstants.phoneVerificationRouteName,
+            builder: (context, state) => PhoneVerificationScreen(),
+          ),
+          GoRoute(
+            path: '/auth/register',
+            name: MyAppRouteConstants.registerRouteName,
+            builder: (context, state) => RegisterScreen(),
+          ),
+          GoRoute(
+            path: '/auth/login',
+            name: MyAppRouteConstants.loginRouteName,
+            builder: (context, state) => LoginScreen(),
+          ),
+          GoRoute(
+            path: '/splash',
+            name: MyAppRouteConstants.OpenSplashRouteName,
+            builder: (context, state) => OpenSplashScreen(),
           ),
     ],
   
