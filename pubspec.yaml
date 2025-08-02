@@ -49,7 +49,14 @@ flutter:
     - assets/locationAccess.svg
     - assets/driverprofile.svg
     - assets/flags/
+    - assets/flags/english.png
+    - assets/flags/arabic.png
+    - assets/flags/french.png
     - assets/flags/india.png
+    - assets/flags/german.png
+    - assets/flags/portugues.png
+    - assets/flags/turkish.png
+    - assets/flags/dutch.png
     - assets/top_curve.svg
     - assets/google_icon.png
     - assets/facebook.png

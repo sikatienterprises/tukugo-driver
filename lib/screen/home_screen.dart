@@ -22,7 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool showReachPickupCard = false; // Show the reach pickup card
   bool showGuidedMapsCard = false; // Show the guided maps card
   bool showGoToDropCard = false; // Show the go to drop card
-  bool showCompleteRideCard = false; // Show the complete ride card after OTP verification
+  bool showCompleteRideCard =
+      false; // Show the complete ride card after OTP verification
 
   @override
   Widget build(BuildContext context) {
@@ -264,7 +265,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             offset: const Offset(0, 4),
                           ),
                         ],
-                        border: Border.all(color: Colors.blue.shade100, width: 2),
+                        border:
+                            Border.all(color: Colors.blue.shade100, width: 2),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -274,7 +276,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               CircleAvatar(
                                 radius: 22,
-                                backgroundImage: AssetImage('assets/driverprofile.svg'), // Replace with your asset
+                                backgroundImage: AssetImage(
+                                    'assets/driverprofile.svg'), // Replace with your asset
                                 backgroundColor: Colors.grey[200],
                               ),
                               const SizedBox(width: 10),
@@ -284,10 +287,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Row(
                                     children: [
                                       Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 2),
                                         decoration: BoxDecoration(
                                           color: Colors.yellow[700],
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                         child: const Text(
                                           'Bike',
@@ -400,10 +405,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       const Text('Accept'),
                                       Container(
                                         margin: const EdgeInsets.only(left: 6),
-                                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 6, vertical: 2),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         child: const Text(
                                           '10',
@@ -453,7 +460,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Icon(Icons.keyboard_arrow_up_rounded, color: Colors.white, size: 28),
+                                Icon(Icons.keyboard_arrow_up_rounded,
+                                    color: Colors.white, size: 28),
                                 SizedBox(width: 4),
                                 Text(
                                   'Reach pickup',
@@ -489,11 +497,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    const Icon(Icons.location_on, color: Colors.black, size: 28),
+                                    const Icon(Icons.location_on,
+                                        color: Colors.black, size: 28),
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: const [
                                           Text(
                                             'Ulsoor Lake',
@@ -514,7 +524,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     const SizedBox(width: 8),
-                                    Icon(Icons.phone, color: Colors.green, size: 28),
+                                    Icon(Icons.phone,
+                                        color: Colors.green, size: 28),
                                   ],
                                 ),
                                 const SizedBox(height: 10),
@@ -529,15 +540,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                             showGuidedMapsCard = true;
                                           });
                                         },
-                                        icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                                        icon: const Icon(Icons.arrow_forward,
+                                            color: Colors.white),
                                         label: const Text('Reached'),
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.blue,
                                           foregroundColor: Colors.white,
-                                          padding: const EdgeInsets.symmetric(vertical: 14),
-                                          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 14),
+                                          textStyle: const TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(8),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
                                         ),
                                       ),
@@ -582,11 +598,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(Icons.location_on, color: Colors.black, size: 32),
+                                const Icon(Icons.location_on,
+                                    color: Colors.black, size: 32),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: const [
                                       Text(
                                         'Ulsoor Lake',
@@ -696,7 +714,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Icon(Icons.keyboard_arrow_up_rounded, color: Colors.white, size: 28),
+                                Icon(Icons.keyboard_arrow_up_rounded,
+                                    color: Colors.white, size: 28),
                                 SizedBox(width: 4),
                                 Text(
                                   'Go to drop',
@@ -730,11 +749,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(Icons.location_on, color: Colors.black, size: 28),
+                                const Icon(Icons.location_on,
+                                    color: Colors.black, size: 28),
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: const [
                                       Text(
                                         'Ulsoor Lake',
@@ -756,10 +777,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 const SizedBox(width: 8),
                                 GestureDetector(
-                                  onTap: () => context.go(
-                                    '/auth/drawer/chat',
-                                  ),
-                                  child:  Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28)),
+                                    onTap: () => context.go(
+                                          '/auth/drawer/chat',
+                                        ),
+                                    child: Icon(Icons.chat_bubble_outline,
+                                        color: Colors.teal, size: 28)),
                               ],
                             ),
                           ),
@@ -776,7 +798,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       showGoToDropCard = false;
                                     });
                                     // Wait for OTP screen result
-                                    final result = await Navigator.of(context).push(
+                                    final result =
+                                        await Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => OtpStartride(),
                                       ),
@@ -787,13 +810,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       });
                                     }
                                   },
-                                  icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                                  icon: const Icon(Icons.arrow_forward,
+                                      color: Colors.white),
                                   label: const Text('Start Ride'),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.green,
                                     foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
-                                    textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 14),
+                                    textStyle: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
@@ -836,7 +863,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Icon(Icons.keyboard_arrow_up_rounded, color: Colors.white, size: 28),
+                                Icon(Icons.keyboard_arrow_up_rounded,
+                                    color: Colors.white, size: 28),
                                 SizedBox(width: 4),
                                 Text(
                                   'Go to drop',
@@ -870,11 +898,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(Icons.location_on, color: Colors.black, size: 28),
+                                const Icon(Icons.location_on,
+                                    color: Colors.black, size: 28),
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
@@ -908,11 +938,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                               GestureDetector(
-                                onTap: () => context.go(
-                                  '/auth/drawer/chat',
-                                ),
-                                child: Icon(Icons.chat_bubble_outline, color: Colors.teal, size: 28)),
+                                GestureDetector(
+                                    onTap: () => context.go(
+                                          '/auth/drawer/chat',
+                                        ),
+                                    child: Icon(Icons.chat_bubble_outline,
+                                        color: Colors.teal, size: 28)),
                               ],
                             ),
                           ),
@@ -927,14 +958,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onPressed: () {
                                     setState(() {
                                       showCompleteRideCard = false;
+                                      context.push('/payment');
                                     });
                                     // TODO: Add ride completion logic here (e.g., show confirmation, navigate, etc.)
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.brown,
                                     foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
-                                    textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 14),
+                                    textStyle: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
@@ -942,7 +977,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
-                                      Icon(Icons.arrow_forward, color: Colors.white),
+                                      Icon(Icons.arrow_forward,
+                                          color: Colors.white),
                                       SizedBox(width: 8),
                                       Text('Complete ride'),
                                     ],

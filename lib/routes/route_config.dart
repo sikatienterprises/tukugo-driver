@@ -106,7 +106,6 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 class MyAppRouter {
-  
   final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/splash',
@@ -165,6 +164,11 @@ class MyAppRouter {
         path: '/wallet',
         builder: (context, state) => MyWallet(),
       ),
+      GoRoute(
+        name: MyAppRouteConstants.paymentScreen,
+        path: '/payment',
+        builder: (context, state) => PaymentScreen(),
+      ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
@@ -203,78 +207,77 @@ class MyAppRouter {
           ),
         ],
       ),
-          GoRoute(
-            path: '/otp/start/ride',
-            name: MyAppRouteConstants.otpStartride,
-            builder: (context, state) => OtpStartride(),
-          ),
-          GoRoute(
-            path: '/auth/drawer/changepassword',
-            name: MyAppRouteConstants.ChangePasswordScreen,
-            builder: (context, state) => ChangePasswordScreen(),
-          ),
-          GoRoute(
-            path: '/auth/drawer/chat',
-            name: MyAppRouteConstants.chat,
-            builder: (context, state) => ChatScreen(),
-          ),
-          GoRoute(
-            path: '/auth/drawer/transactions',
-            name: MyAppRouteConstants.transactions,
-            builder: (context, state) => TransactionScreen(),
-          ),
-          GoRoute(
-            path: '/auth/drawer/contactus',
-            name: MyAppRouteConstants.contactUs,
-            builder: (context, state) => ContactUsScreen(),
-          ),
-          GoRoute(
-            path: '/auth/drawer/paymentmethod',
-            name: MyAppRouteConstants.paymentMethodSelection,
-            builder: (context, state) => PaymentMethodScreen(),
-          ),
-          GoRoute(
-            path: '/auth/drawer/addmoney',
-            name: MyAppRouteConstants.addMoney,
-            builder: (context, state) => AddMoneyPage(),
-          ),
+      GoRoute(
+        path: '/otp/start/ride',
+        name: MyAppRouteConstants.otpStartride,
+        builder: (context, state) => OtpStartride(),
+      ),
+      GoRoute(
+        path: '/auth/drawer/changepassword',
+        name: MyAppRouteConstants.ChangePasswordScreen,
+        builder: (context, state) => ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: '/auth/drawer/chat',
+        name: MyAppRouteConstants.chat,
+        builder: (context, state) => ChatScreen(),
+      ),
+      GoRoute(
+        path: '/auth/drawer/transactions',
+        name: MyAppRouteConstants.transactions,
+        builder: (context, state) => TransactionScreen(),
+      ),
+      GoRoute(
+        path: '/auth/drawer/contactus',
+        name: MyAppRouteConstants.contactUs,
+        builder: (context, state) => ContactUsScreen(),
+      ),
+      GoRoute(
+        path: '/auth/drawer/paymentmethod',
+        name: MyAppRouteConstants.paymentMethodSelection,
+        builder: (context, state) => PaymentMethodScreen(),
+      ),
+      GoRoute(
+        path: '/auth/drawer/addmoney',
+        name: MyAppRouteConstants.addMoney,
+        builder: (context, state) => AddMoneyPage(),
+      ),
 
-        GoRoute(
-            path: '/login/splash',
-            name: MyAppRouteConstants.loginSplashScreen,
-            builder: (context, state) => SplashScreen(),
-          ),
-          GoRoute(
-            path: '/login/set-password',
-            name: MyAppRouteConstants.setPasswordRouteName,
-            builder: (context, state) => SetPasswordScreen(),
-          ),
-          GoRoute(
-            path: '/login/OTP/reset-password',
-            name: MyAppRouteConstants.otpResetPasswordRouteName,
-            builder: (context, state) => OtpResetpassword(),
-          ),
-          GoRoute(
-            path: '/auth/phoneverification',
-            name: MyAppRouteConstants.phoneVerificationRouteName,
-            builder: (context, state) => PhoneVerificationScreen(),
-          ),
-          GoRoute(
-            path: '/auth/register',
-            name: MyAppRouteConstants.registerRouteName,
-            builder: (context, state) => RegisterScreen(),
-          ),
-          GoRoute(
-            path: '/auth/login',
-            name: MyAppRouteConstants.loginRouteName,
-            builder: (context, state) => LoginScreen(),
-          ),
-          GoRoute(
-            path: '/splash',
-            name: MyAppRouteConstants.OpenSplashRouteName,
-            builder: (context, state) => OpenSplashScreen(),
-          ),
+      GoRoute(
+        path: '/login/splash',
+        name: MyAppRouteConstants.loginSplashScreen,
+        builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        path: '/login/set-password',
+        name: MyAppRouteConstants.setPasswordRouteName,
+        builder: (context, state) => SetPasswordScreen(),
+      ),
+      GoRoute(
+        path: '/login/OTP/reset-password',
+        name: MyAppRouteConstants.otpResetPasswordRouteName,
+        builder: (context, state) => OtpResetpassword(),
+      ),
+      GoRoute(
+        path: '/auth/phoneverification',
+        name: MyAppRouteConstants.phoneVerificationRouteName,
+        builder: (context, state) => PhoneVerificationScreen(),
+      ),
+      GoRoute(
+        path: '/auth/register',
+        name: MyAppRouteConstants.registerRouteName,
+        builder: (context, state) => RegisterScreen(),
+      ),
+      GoRoute(
+        path: '/auth/login',
+        name: MyAppRouteConstants.loginRouteName,
+        builder: (context, state) => LoginScreen(),
+      ),
+      GoRoute(
+        path: '/splash',
+        name: MyAppRouteConstants.OpenSplashRouteName,
+        builder: (context, state) => OpenSplashScreen(),
+      ),
     ],
-  
   );
 }

@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tukugo/screen/drawer/aboutUs.dart';
+import 'package:tukugo/screen/drawer/changeLanguage.dart';
+import 'package:tukugo/screen/drawer/globals.dart';
 import 'package:tukugo/screen/drawer/wallet.dart';
 import 'package:tukugo/screen/drawer/change-password.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String currentFlagPath = Globals.selectedFlagPath;
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +99,14 @@ class ProfileScreen extends StatelessWidget {
                 _buildMenuItem(Icons.build_outlined, 'Mechanic'),
                 _buildMenuItem(Icons.chat_bubble_outline, 'Complain'),
                 _buildMenuItem(Icons.card_giftcard_outlined, 'Offers/Referral'),
-                _buildMenuItem(Icons.lock_outline, 'Change password', onTap: () => 
-                  Navigator.of(context, rootNavigator: true).push(
-                    MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+                _buildMenuItem(
+                  Icons.lock_outline,
+                  'Change password',
+                  onTap: () => Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(
+                        builder: (context) => ChangePasswordScreen()),
                   ),
-                  ),
+                ),
                 _buildMenuItem(
                   Icons.info_outline,
                   'About Us',
@@ -105,7 +117,17 @@ class ProfileScreen extends StatelessWidget {
                   },
                 ),
                 _buildMenuItem(Icons.help_outline, 'Help and Support'),
-                _buildMenuItem(Icons.logout, 'Logout'),
+                _buildMenuItem(Icons.logout, 'Logout', onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => LogoutDialog(
+                      onConfirm: () {
+                        // Simple logout logic
+                        Navigator.of(context).pushReplacementNamed('/login');
+                      },
+                    ),
+                  );
+                }),
               ],
             ),
           ),
@@ -119,16 +141,33 @@ class ProfileScreen extends StatelessWidget {
             child: Row(
               children: [
                 Image.asset(
-                  'assets/flags/india.png',
+                  currentFlagPath,
                   height: 22,
                   width: 22,
                 ),
                 const SizedBox(width: 12),
-                const Text(
-                  'Change language',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
+                GestureDetector(
+                  onTap: () async {
+                    // Wait for the result from ChangeLanguagePage
+                    final result =
+                        await Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute(
+                          builder: (context) => const ChangeLanguagePage()),
+                    );
+
+                    // Update the local state when returning from language selection
+                    if (result != null) {
+                      setState(() {
+                        currentFlagPath = Globals.selectedFlagPath;
+                      });
+                    }
+                  },
+                  child: const Text(
+                    'Change language',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
@@ -163,6 +202,33 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class LogoutDialog extends StatelessWidget {
+  final VoidCallback onConfirm;
+
+  const LogoutDialog({super.key, required this.onConfirm});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Logout'),
+      content: const Text('Are you sure you want to logout?'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(), // cancel
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(); // close dialog
+            onConfirm(); // run logout action
+          },
+          child: const Text('Logout'),
+        ),
+      ],
     );
   }
 }
