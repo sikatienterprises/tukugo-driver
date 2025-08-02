@@ -9,7 +9,7 @@ class TransactionScreen extends StatefulWidget {
 }
 
 class _TransactionScreenState extends State<TransactionScreen> {
-  int selectedIndex = 2; // Initially "Settings" selected
+  int selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
