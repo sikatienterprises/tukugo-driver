@@ -68,29 +68,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          'Change Password',
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            const Text(
+              'Change Password',
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 16),
             // old password
             _buildPasswordField(
               controller: _oldPasswordController,
