@@ -50,6 +50,11 @@ flutter:
     - assets/driverprofile.svg
     - assets/flags/
     - assets/flags/india.png
+    - assets/top_curve.svg
+    - assets/google_icon.png
+    - assets/facebook.png
+  
+
 
    
 flutter_launcher_icons:

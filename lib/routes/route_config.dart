@@ -23,7 +23,13 @@ import 'package:tukugo/screen/drawer/transaction.dart';
 import 'package:tukugo/screen/drawer/contactUs.dart';
 import 'package:tukugo/screen/drawer/method_selection.dart';
 import 'package:tukugo/screen/drawer/add_money.dart';
-
+import 'package:tukugo/screen/splash_screen.dart';
+import 'package:tukugo/screen/phone_verification_screen.dart';
+import 'package:tukugo/screen/otp-resetPassword.dart';
+import 'package:tukugo/screen/set_password_screen.dart';
+import 'package:tukugo/auth/login_screen.dart';
+import 'package:tukugo/auth/register_screen.dart';
+import 'package:tukugo/screen/open-splash.dart';
 // class MyAppRouter {
 //   GoRouter router = GoRouter(
 //     initialLocation: '/', // Ensure initialLocation points to SplashScreen
@@ -98,9 +104,10 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 class MyAppRouter {
+  
   final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/home',
+    initialLocation: '/splash',
     routes: [
       // ✅ Auth/onboarding — outside layout
       GoRoute(
@@ -229,7 +236,42 @@ class MyAppRouter {
             name: MyAppRouteConstants.addMoney,
             builder: (context, state) => AddMoneyPage(),
           ),
-    ],
+          GoRoute(
+            path: '/login/splash',
+            name: MyAppRouteConstants.loginSplashScreen,
+            builder: (context, state) => SplashScreen(),
+          ),
+          GoRoute(
+            path: '/login/set-password',
+            name: MyAppRouteConstants.setPasswordRouteName,
+            builder: (context, state) => SetPasswordScreen(),
+          ),
+          GoRoute(
+            path: '/login/OTP/reset-password',
+            name: MyAppRouteConstants.otpResetPasswordRouteName,
+            builder: (context, state) => OtpResetpassword(),
+          ),
+          GoRoute(
+            path: '/auth/phoneverification',
+            name: MyAppRouteConstants.phoneVerificationRouteName,
+            builder: (context, state) => PhoneVerificationScreen(),
+          ),
+          GoRoute(
+            path: '/auth/register',
+            name: MyAppRouteConstants.registerRouteName,
+            builder: (context, state) => RegisterScreen(),
+          ),
+          GoRoute(
+            path: '/auth/login',
+            name: MyAppRouteConstants.loginRouteName,
+            builder: (context, state) => LoginScreen(),
+          ),
+          GoRoute(
+            path: '/splash',
+            name: MyAppRouteConstants.OpenSplashRouteName,
+            builder: (context, state) => OpenSplashScreen(),
+          ),
+   ],
   
   );
 }
