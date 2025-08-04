@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tukugo/routes/route_constants.dart';
 import 'package:tukugo/screen/drawer/profile_drawer.dart';
 import 'package:tukugo/screen/otp-startRide.dart';
-import 'package:tukugo/screen/drawer/change-password.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -277,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               CircleAvatar(
                                 radius: 22,
                                 backgroundImage: AssetImage(
-                                    'assets/driverprofile.svg'), // Replace with your asset
+                                    'assets/ProfilePic.jpg'), // Replace with your asset
                                 backgroundColor: Colors.grey[200],
                               ),
                               const SizedBox(width: 10),
@@ -403,24 +401,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       const Text('Accept'),
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 6),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 6, vertical: 2),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: const Text(
-                                          '10',
-                                          style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ),
+                                      // Container(
+                                      //   margin: const EdgeInsets.only(left: 6),
+                                      //   padding: const EdgeInsets.symmetric(
+                                      //       horizontal: 6, vertical: 2),
+                                      //   // decoration: BoxDecoration(
+                                      //   //   color: Colors.white,
+                                      //   //   borderRadius:
+                                      //   //       BorderRadius.circular(10),
+                                      //   // ),
+                                      //   // child: const Text(
+                                      //   //   '10',
+                                      //   //   style: TextStyle(
+                                      //   //     color: Colors.blue,
+                                      //   //     fontWeight: FontWeight.bold,
+                                      //   //     fontSize: 13,
+                                      //   //   ),
+                                      //   // ),
+                                      // ),
                                     ],
                                   ),
                                 ),

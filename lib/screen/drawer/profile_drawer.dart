@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tukugo/auth/vehicle_selection_page.dart';
 import 'package:tukugo/screen/drawer/aboutUs.dart';
 import 'package:tukugo/screen/drawer/changeLanguage.dart';
 import 'package:tukugo/screen/drawer/globals.dart';
@@ -88,6 +90,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.zero,
               children: [
                 _buildMenuItem(
+                  Icons.card_giftcard_outlined,
+                  'Complete Profile',
+                  onTap: () {
+                    context.push('/');
+                  },
+                ),
+                _buildMenuItem(
                   Icons.account_balance_wallet_outlined,
                   'Wallet',
                   onTap: () {
@@ -98,7 +107,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 _buildMenuItem(Icons.build_outlined, 'Mechanic'),
                 _buildMenuItem(Icons.chat_bubble_outline, 'Complain'),
-                _buildMenuItem(Icons.card_giftcard_outlined, 'Offers/Referral'),
                 _buildMenuItem(
                   Icons.lock_outline,
                   'Change password',
@@ -135,8 +143,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           // Language Section
           Container(
             padding: const EdgeInsets.only(
-              bottom: 64,
+              top: 24,
               left: 16,
+              bottom: 20,
             ),
             child: Row(
               children: [
