@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tukugo/auth/vehicle_selection_page.dart';
 import 'package:tukugo/screen/drawer/aboutUs.dart';
 import 'package:tukugo/screen/drawer/changeLanguage.dart';
+import 'package:tukugo/screen/drawer/contactUs.dart';
 import 'package:tukugo/screen/drawer/globals.dart';
 import 'package:tukugo/screen/drawer/wallet.dart';
 import 'package:tukugo/screen/drawer/change-password.dart';
@@ -93,7 +94,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Icons.card_giftcard_outlined,
                   'Complete Profile',
                   onTap: () {
-                    context.push('/');
+                    Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute(
+                          builder: (context) => VehicleSelectionPage()),
+                    );
                   },
                 ),
                 _buildMenuItem(
@@ -106,7 +110,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 _buildMenuItem(Icons.build_outlined, 'Mechanic'),
-                _buildMenuItem(Icons.chat_bubble_outline, 'Complain'),
                 _buildMenuItem(
                   Icons.lock_outline,
                   'Change password',
@@ -124,7 +127,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   },
                 ),
-                _buildMenuItem(Icons.help_outline, 'Help and Support'),
+                _buildMenuItem(
+                  Icons.help_outline,
+                  'Help and Support',
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute(
+                          builder: (context) => ContactUsScreen()),
+                    );
+                  },
+                ),
                 _buildMenuItem(Icons.logout, 'Logout', onTap: () {
                   showDialog(
                     context: context,
@@ -143,9 +155,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           // Language Section
           Container(
             padding: const EdgeInsets.only(
-              top: 24,
               left: 16,
-              bottom: 20,
+              bottom: 32,
             ),
             child: Row(
               children: [

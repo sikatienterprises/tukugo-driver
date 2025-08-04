@@ -16,9 +16,14 @@ class _TransactionScreenState extends State<TransactionScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('', style: TextStyle(color: Colors.black)),
+        leading: InkWell(
+            onTap: () {
+              context.go('/wallet');
+            },
+            child: Icon(Icons.arrow_back)),
         actions: [
           IconButton(
+            padding: EdgeInsets.symmetric(horizontal: 16),
             icon: const Icon(Icons.notifications_none, color: Colors.black),
             onPressed: () {
               context.push('/notifications');

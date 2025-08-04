@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'Roboto',
         textTheme: TextTheme(
           titleLarge: const TextStyle(
             fontSize: 25,

@@ -61,6 +61,13 @@ flutter:
     - assets/google_icon.png
     - assets/facebook.png
   
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 500
+       
 
 
    
