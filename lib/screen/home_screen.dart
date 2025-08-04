@@ -156,8 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: 40, vertical: 80),
                         child: Column(
                           children: [
-                            Image.network(
-                              'https://i.ibb.co/C33QCK2M/7610-removebg-preview.png',
+                            Image.asset(
+                              'assets/Homecenter.png',
                             ),
                             SizedBox(height: 30),
                             Text(
