@@ -33,6 +33,7 @@ class _VehicleSelectionPageState extends State<VehicleSelectionPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(),
       body: SafeArea(
         child: Column(
           children: [
@@ -81,12 +82,10 @@ class _VehicleSelectionPageState extends State<VehicleSelectionPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-
                     _vehicleOption('E-Rickshaw', Icons.electric_rickshaw),
                     _vehicleOption('Car', Icons.directions_car),
                     _vehicleOption('Bike', Icons.motorcycle),
                     _vehicleOption('Auto', Icons.local_taxi),
-
                     const SizedBox(height: 40),
                     SizedBox(
                       width: double.infinity,

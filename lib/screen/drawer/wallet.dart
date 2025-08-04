@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tukugo/routes/route_constants.dart';
 
 class MyWallet extends StatelessWidget {
   @override

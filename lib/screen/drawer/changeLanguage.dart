@@ -46,7 +46,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
     {
       'name': 'Turkish',
       'subtitle': 'Türkçe',
-      'flagAsset': 'assets/flags/turish.png',
+      'flagAsset': 'assets/flags/turkish.png',
     },
     {
       'name': 'Dutch',
