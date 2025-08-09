@@ -45,10 +45,6 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => context.go('/wallet'),
-        ),
         title: const Text(
           'Amount',
           style: TextStyle(
