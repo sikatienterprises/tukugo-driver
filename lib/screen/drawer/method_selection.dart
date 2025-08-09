@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PaymentMethod {
   final String id;
@@ -7,10 +8,10 @@ class PaymentMethod {
   final String expiry;
 
   PaymentMethod({
-     this.id = '',
-     this.type = '',
-     this.cardNumber = '',
-     this.expiry = '',
+    this.id = '',
+    this.type = '',
+    this.cardNumber = '',
+    this.expiry = '',
   });
 }
 
@@ -72,11 +73,11 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
+        leading: InkWell(
+          onTap: () {
+            context.go('/wallet');
           },
+          child: const Icon(Icons.arrow_back, color: Colors.black),
         ),
         title: const Text(
           'Amount',
@@ -99,6 +100,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               value: _selectedDropdownMethod,
               decoration: InputDecoration(
                 hintText: 'Other Payment Method',
+                hintStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -106,7 +108,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               items: _otherPaymentOptions.map((option) {
                 return DropdownMenuItem<String>(
                   value: option,
-                  child: Text(option),
+                  child: Text(
+                    option,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
                 );
               }).toList(),
               onChanged: (value) {
@@ -133,7 +138,6 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                   _customInput = val;
                 },
               ),
-
               const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
@@ -184,9 +188,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                             ? Colors.teal.withOpacity(0.1)
                             : Colors.grey.shade100,
                         border: Border.all(
-                          color: isSelected
-                              ? Colors.teal
-                              : Colors.grey.shade300,
+                          color:
+                              isSelected ? Colors.teal : Colors.grey.shade300,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(10),
@@ -249,11 +252,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           onPressed: () {
             if (_selectedSavedMethod.isNotEmpty) {
               print('Proceed with saved method: $_selectedSavedMethod');
-            } else if (_selectedDropdownMethod != null &&
-                _customInput.isNotEmpty) {
-              print('Proceed with $_selectedDropdownMethod: $_customInput');
+              context.go('/auth/drawer/addmoney');
             } else {
               print('Please select or enter a payment method');
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Please select or enter a payment method'),
+                backgroundColor: Colors.red,
+              ));
             }
           },
           style: ElevatedButton.styleFrom(

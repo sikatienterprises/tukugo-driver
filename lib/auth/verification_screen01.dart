@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tukugo/auth/aadhar.dart';
+import 'package:tukugo/auth/driving_license.dart';
+import 'package:tukugo/auth/vehicle_rc.dart';
 import 'package:tukugo/routes/route_constants.dart';
 
 void main() {
@@ -27,8 +30,7 @@ class VerificationScreen01 extends StatelessWidget {
         leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
-              GoRouter.of(context).pushNamed(
-                  MyAppRouteConstants.vehicle_selection_pageRouteName);
+              Navigator.of(context).pop();
             }),
         actions: [
           Padding(
@@ -120,8 +122,9 @@ class VerificationScreen01 extends StatelessWidget {
                       icon: Icons.warning_rounded,
                       iconColor: Colors.orange,
                       onTap: () {
-                        GoRouter.of(context).pushNamed(
-                          MyAppRouteConstants.driving_licenseRouteName,
+                        Navigator.of(context, rootNavigator: true).push(
+                          MaterialPageRoute(
+                              builder: (context) => LicenseUploadPage()),
                         );
                       },
                     ),
@@ -142,8 +145,8 @@ class VerificationScreen01 extends StatelessWidget {
                       icon: Icons.warning_rounded,
                       iconColor: Colors.orange,
                       onTap: () {
-                        GoRouter.of(context).pushNamed(
-                          MyAppRouteConstants.vehicle_rcRouteName,
+                        Navigator.of(context, rootNavigator: true).push(
+                          MaterialPageRoute(builder: (context) => VehicleRc()),
                         );
                       },
                     ),
@@ -154,8 +157,9 @@ class VerificationScreen01 extends StatelessWidget {
                       icon: Icons.warning_rounded,
                       iconColor: Colors.orange,
                       onTap: () {
-                        GoRouter.of(context).pushNamed(
-                          MyAppRouteConstants.aadharRouteName,
+                        Navigator.of(context, rootNavigator: true).push(
+                          MaterialPageRoute(
+                              builder: (context) => AadhaarUploadPage()),
                         );
                       },
                     ),

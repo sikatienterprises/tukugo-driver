@@ -42,17 +42,18 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.go('/wallet'),
         ),
         title: const Text(
           'Amount',
           style: TextStyle(
             color: Colors.black,
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -96,7 +97,8 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(color: Colors.blue, width: 2),
+                          borderSide:
+                              const BorderSide(color: Colors.blue, width: 2),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -458,8 +460,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(); // Close dialog
-                      Navigator.of(context).pop(); // Go back to previous screen
+                      context.go('/home'); // Go back to previous screen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,

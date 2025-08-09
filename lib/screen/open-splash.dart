@@ -101,7 +101,7 @@ class _SplashScreenState extends State<OpenSplashScreen>
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     );
-    
+
     _textOpacityAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
@@ -115,15 +115,15 @@ class _SplashScreenState extends State<OpenSplashScreen>
       TweenSequenceItem(
         tween: Tween<Offset>(
           begin: const Offset(-1.5, 0), // Start from left edge
-          end: const Offset(1.5, 0),   // Go to right edge
+          end: const Offset(1.5, 0), // Go to right edge
         ).chain(CurveTween(curve: Curves.easeInOut)),
         weight: 50,
       ),
       // Bounce back to center with elastic effect
       TweenSequenceItem(
         tween: Tween<Offset>(
-          begin: const Offset(1.5, 0),  // From right edge
-          end: Offset.zero,             // To center
+          begin: const Offset(1.5, 0), // From right edge
+          end: Offset.zero, // To center
         ).chain(CurveTween(curve: Curves.elasticOut)),
         weight: 50,
       ),
@@ -145,30 +145,36 @@ class _SplashScreenState extends State<OpenSplashScreen>
     // Twinkle animation for blob
     _twinkleController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2400), // slightly longer for extra twinkle
+      duration: const Duration(
+          milliseconds: 2400), // slightly longer for extra twinkle
     );
     _twinkleScale = TweenSequence([
       // First twinkle
       TweenSequenceItem(
-        tween: Tween<double>(begin: 1.0, end: 1.3).chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween<double>(begin: 1.0, end: 1.3)
+            .chain(CurveTween(curve: Curves.easeOut)),
         weight: 20,
       ),
       TweenSequenceItem(
-        tween: Tween<double>(begin: 1.3, end: 0.8).chain(CurveTween(curve: Curves.easeIn)),
+        tween: Tween<double>(begin: 1.3, end: 0.8)
+            .chain(CurveTween(curve: Curves.easeIn)),
         weight: 20,
       ),
       // Second twinkle
       TweenSequenceItem(
-        tween: Tween<double>(begin: 0.8, end: 1.3).chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween<double>(begin: 0.8, end: 1.3)
+            .chain(CurveTween(curve: Curves.easeOut)),
         weight: 20,
       ),
       TweenSequenceItem(
-        tween: Tween<double>(begin: 1.3, end: 0.8).chain(CurveTween(curve: Curves.easeIn)),
+        tween: Tween<double>(begin: 1.3, end: 0.8)
+            .chain(CurveTween(curve: Curves.easeIn)),
         weight: 20,
       ),
       // Final spread
       TweenSequenceItem(
-        tween: Tween<double>(begin: 0.8, end: 30.0).chain(CurveTween(curve: Curves.easeInOut)),
+        tween: Tween<double>(begin: 0.8, end: 30.0)
+            .chain(CurveTween(curve: Curves.easeInOut)),
         weight: 20,
       ),
     ]).animate(_twinkleController);
@@ -189,7 +195,8 @@ class _SplashScreenState extends State<OpenSplashScreen>
       _twinkleController.forward(),
       _textController.forward(),
     ]);
-    await Future.delayed(const Duration(milliseconds: 300)); // Optional: slight pause for effect
+    await Future.delayed(
+        const Duration(milliseconds: 300)); // Optional: slight pause for effect
 
     // 2. Expand blob to fill background
     setState(() => _showBackground = true);
@@ -253,7 +260,10 @@ class _SplashScreenState extends State<OpenSplashScreen>
                       child: Container(
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color.fromARGB(255, 124, 124, 192), Color(0xFFEAEAEA)],
+                            colors: [
+                              Color.fromARGB(255, 124, 124, 192),
+                              Color(0xFFEAEAEA)
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -290,7 +300,10 @@ class _SplashScreenState extends State<OpenSplashScreen>
                         opacity: _textOpacityAnimation.value,
                         child: Text(
                           "Tuku Go",
-                          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                                 fontSize: 52,
@@ -365,7 +378,7 @@ class BlobShape extends StatelessWidget {
         height: 120,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [ Color.fromARGB(255, 124, 124, 192), Color(0xFFEAEAEA)],
+            colors: [Color.fromARGB(255, 124, 124, 192), Color(0xFFEAEAEA)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

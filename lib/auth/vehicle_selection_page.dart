@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:tukugo/routes/route_constants.dart';
+// import 'package:go_router/go_router.dart';
+import 'package:tukugo/auth/verification_screen01.dart';
+// import 'package:tukugo/routes/route_constants.dart';
 
 class VehicleSelectionPage extends StatefulWidget {
   const VehicleSelectionPage({super.key});
@@ -18,8 +19,9 @@ class _VehicleSelectionPageState extends State<VehicleSelectionPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You selected: $_selectedVehicle')),
       );
-      GoRouter.of(context)
-          .pushNamed(MyAppRouteConstants.verification_screen01RouteName);
+      Navigator.of(context, rootNavigator: true).push(
+        MaterialPageRoute(builder: (context) => VerificationScreen01()),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please select a vehicle!')),
@@ -49,17 +51,27 @@ class _VehicleSelectionPageState extends State<VehicleSelectionPage> {
                     fit: BoxFit.cover,
                   ),
                   Positioned(
-                    top: 16,
-                    right: 16,
+                      child: Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.help_outline, color: Colors.white),
-                        SizedBox(width: 6),
-                        Text('Help', style: TextStyle(color: Colors.white)),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                            onTap: Navigator.of(context).pop,
+                            child: Icon(Icons.arrow_back)),
+                        Container(
+                          child: Row(
+                            children: [
+                              Icon(Icons.help_outline, color: Colors.white),
+                              SizedBox(width: 6),
+                              Text('Help',
+                                  style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  ),
+                  ))
                 ],
               ),
             ),
@@ -81,12 +93,10 @@ class _VehicleSelectionPageState extends State<VehicleSelectionPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-
                     _vehicleOption('E-Rickshaw', Icons.electric_rickshaw),
                     _vehicleOption('Car', Icons.directions_car),
                     _vehicleOption('Bike', Icons.motorcycle),
                     _vehicleOption('Auto', Icons.local_taxi),
-
                     const SizedBox(height: 40),
                     SizedBox(
                       width: double.infinity,

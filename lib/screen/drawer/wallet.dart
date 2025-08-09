@@ -1,42 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tukugo/routes/route_constants.dart';
 
 class MyWallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: Color(0xFFF8F9FA),
       body: SafeArea(
         child: Column(
           children: [
-            // Status Bar Area
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '9:41',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.signal_cellular_4_bar, size: 16),
-                      SizedBox(width: 4),
-                      Icon(Icons.wifi, size: 16),
-                      SizedBox(width: 4),
-                      Icon(Icons.battery_full, size: 16),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
             // Main Content
             Expanded(
               child: Padding(
@@ -73,8 +46,8 @@ class MyWallet extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                      GestureDetector(
-                        onTap: () => context.go('/auth/drawer/addmoney'),
+                        GestureDetector(
+                          onTap: () => context.go('/auth/drawer/addmoney'),
                           child: Container(
                             width: 168,
                             padding: EdgeInsets.symmetric(
@@ -196,11 +169,10 @@ class MyWallet extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () => context.go(
-                             '/auth/drawer/transactions',
+                            '/auth/drawer/transactions',
                           ),
                           child: Text(
                             'See All',
-                           
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xFF4A90E2),

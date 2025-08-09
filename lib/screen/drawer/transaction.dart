@@ -16,17 +16,14 @@ class _TransactionScreenState extends State<TransactionScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(
-              context,
-            ); // Will go back to previous screen (e.g. Settings)
-          },
-        ),
-        title: const Text('', style: TextStyle(color: Colors.black)),
+        leading: InkWell(
+            onTap: () {
+              context.go('/wallet');
+            },
+            child: Icon(Icons.arrow_back)),
         actions: [
           IconButton(
+            padding: EdgeInsets.symmetric(horizontal: 16),
             icon: const Icon(Icons.notifications_none, color: Colors.black),
             onPressed: () {
               context.push('/notifications');
@@ -44,7 +41,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 padding: EdgeInsets.only(top: 8, bottom: 16),
                 child: Text(
                   'Transactions',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                 ),
               ),
             ),
