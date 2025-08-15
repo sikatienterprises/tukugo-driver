@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const Text(
-                'Logo',
+                'Profile',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 36,
