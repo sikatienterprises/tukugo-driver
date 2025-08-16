@@ -31,6 +31,7 @@ import 'package:tukugo/auth/login_screen.dart';
 import 'package:tukugo/auth/register_screen.dart';
 import 'package:tukugo/screen/open-splash.dart';
 import 'package:tukugo/screen/drawer/profile_drawer.dart';
+import 'package:tukugo/screen/report-an-isuue.dart';
 
 // class MyAppRouter {
 //   GoRouter router = GoRouter(
@@ -277,6 +278,11 @@ class MyAppRouter {
         path: '/splash',
         name: MyAppRouteConstants.OpenSplashRouteName,
         builder: (context, state) => OpenSplashScreen(),
+      ),
+      GoRoute(
+        path: '/report/issue',
+        name: MyAppRouteConstants.ReportIssueScreen,
+        builder: (context, state) => ReportIssueScreen(),
       ),
     ],
   );

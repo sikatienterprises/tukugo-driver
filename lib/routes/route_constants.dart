@@ -35,4 +35,5 @@ class MyAppRouteConstants {
   static const String OpenSplashRouteName = 'OpenSplashScreen';
   static const String profileScreen = 'profileScreen';
   static const String paymentScreen = 'paymentScreen';
+  static const String ReportIssueScreen = 'ReportIssueScreen';
 }

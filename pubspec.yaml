@@ -15,7 +15,7 @@ dependencies:
   intl_phone_field: ^3.2.0
   go_router: ^5.2.0  
   cupertino_icons: ^1.0.8
-  image_picker: ^1.1.2
+  image_picker: ^1.2.0
   path_provider: ^2.1.5
   smooth_page_indicator: ^1.1.0  
   flutter_svg: ^2.0.17
@@ -23,7 +23,7 @@ dependencies:
   dotted_border: ^2.0.0+3
   flutter_map: ^6.1.0
   latlong2: ^0.9.0
-  http: ^0.15.0
+  http: ^1.5.0-beta.2
   shared_preferences: ^2.1.0
   permission_handler: ^10.2.0
 
@@ -63,7 +63,8 @@ flutter:
     - assets/top_curve.svg
     - assets/google_icon.png
     - assets/facebook.png
-  
+    - assets/auto.png
+
   fonts:
     - family: Roboto
       fonts:
@@ -77,6 +78,6 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/TukugoLogo.jpg"
+  image_path: "assets/logo/logo.jpg"
   adaptive_icon_background: "#FFFFFF"
   min_sdk_android: 21

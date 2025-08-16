@@ -1,1 +1,14 @@
 flutter/ephemeral
+# Flutter related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# Ignore build outputs
+build/
+
+# Ignore Android folder
+android/
