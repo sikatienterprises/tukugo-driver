@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tukugo/screen/drawer/add_money.dart';
+import 'package:tukugo/screen/drawer/transaction.dart';
 
 class MyWallet extends StatelessWidget {
   @override
@@ -47,7 +49,12 @@ class MyWallet extends StatelessWidget {
                         ),
                         Spacer(),
                         GestureDetector(
-                          onTap: () => context.go('/auth/drawer/addmoney'),
+                          onTap: () {
+                            Navigator.of(context, rootNavigator: true).push(
+                              MaterialPageRoute(
+                                  builder: (context) => AddMoneyPage()),
+                            );
+                          },
                           child: Container(
                             width: 168,
                             padding: EdgeInsets.symmetric(
@@ -168,9 +175,12 @@ class MyWallet extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => context.go(
-                            '/auth/drawer/transactions',
-                          ),
+                          onTap: () {
+                            Navigator.of(context, rootNavigator: true).push(
+                              MaterialPageRoute(
+                                  builder: (context) => TransactionScreen()),
+                            );
+                          },
                           child: Text(
                             'See All',
                             style: TextStyle(
