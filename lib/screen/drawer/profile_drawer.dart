@@ -7,6 +7,7 @@ import 'package:tukugo/screen/drawer/contactUs.dart';
 import 'package:tukugo/screen/drawer/globals.dart';
 import 'package:tukugo/screen/drawer/wallet.dart';
 import 'package:tukugo/screen/drawer/change-password.dart';
+import 'package:tukugo/screen/report-an-isuue.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -100,6 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   },
                 ),
+               
                 _buildMenuItem(
                   Icons.account_balance_wallet_outlined,
                   'Wallet',
@@ -109,7 +111,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   },
                 ),
-                _buildMenuItem(Icons.build_outlined, 'Mechanic'),
+                _buildMenuItem(Icons.build_outlined,
+                 'Mechanic', 
+                onTap: () => Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(
+                        builder: (context) => ReportIssueScreen()),
+                  ),
+                ),
                 _buildMenuItem(
                   Icons.lock_outline,
                   'Change password',

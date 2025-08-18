@@ -280,7 +280,7 @@ class MyAppRouter {
         builder: (context, state) => OpenSplashScreen(),
       ),
       GoRoute(
-        path: '/report/issue',
+        path: '/mechanic',
         name: MyAppRouteConstants.ReportIssueScreen,
         builder: (context, state) => ReportIssueScreen(),
       ),
