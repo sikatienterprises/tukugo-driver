@@ -328,11 +328,11 @@ class _MechanicPageState extends State<MechanicPage> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  // if (mounted) {
-                  //   setState(() {
-                  //     currentStep = 4;
-                  //   });
-                  // }
+                  if (mounted) {
+                    setState(() {
+                      currentStep = 4;
+                    });
+                  }
                 });
               }
               return SizedBox.shrink();

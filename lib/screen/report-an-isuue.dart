@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:tukugo/screen/mechanic/mechanic.dart';
 
 class ReportIssueScreen extends StatefulWidget {
   @override
   _ReportIssueScreenState createState() => _ReportIssueScreenState();
 }
-
 
 class _ReportIssueScreenState extends State<ReportIssueScreen> {
   String? selectedVehicleType;
@@ -16,6 +16,18 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
   String description = '';
   File? _image;
   final ImagePicker _picker = ImagePicker();
+
+  // Controllers for text fields
+  final TextEditingController _modelController = TextEditingController();
+  final TextEditingController _issueController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
+  // Validation error messages
+  String? vehicleTypeError;
+  String? brandError;
+  String? modelError;
+  String? issueError;
+  String? imageError;
 
   final List<VehicleType> vehicleTypes = [
     VehicleType('E-Rikshaw', Icons.electric_rickshaw),
@@ -47,6 +59,50 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
   };
 
   @override
+  void dispose() {
+    _modelController.dispose();
+    _issueController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  bool _validateForm() {
+    setState(() {
+      vehicleTypeError = selectedVehicleType == null ? 'Please select a vehicle type' : null;
+      brandError = selectedBrand == null ? 'Please select a vehicle brand' : null;
+      modelError = (_modelController.text.trim().isEmpty) ? 'Please enter the vehicle model' : null;
+      issueError = (_issueController.text.trim().isEmpty) ? 'Please enter the issue type' : null;
+      imageError = _image == null ? 'Please upload a problem image' : null;
+    });
+
+    return vehicleTypeError == null &&
+           brandError == null &&
+           modelError == null &&
+           issueError == null &&
+           imageError == null;
+  }
+
+  void _submitForm() {
+    if (_validateForm()) {
+      // All validations passed, navigate to mechanic page
+      Navigator.of(context, rootNavigator: true).push(
+        MaterialPageRoute(
+          builder: (context) => MechanicPage(),
+        ),
+      );
+    } else {
+      // Show validation errors
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fill in all required fields'),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -67,221 +123,260 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
         ),
         centerTitle: false,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Vehicle Type Selector
-            Text(
-              'Choose the vehicle Type',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            _buildDropdown(
-              value: selectedVehicleType,
-              hint: 'Car',
-              onTap: () => _showVehicleTypeSelector(),
-              showGreenBorder: true,
-            ),
-            
-            SizedBox(height: 20),
-            
-            // Brand Selector
-            Text(
-              'Choose vehicle Brand',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            _buildDropdown(
-              value: selectedBrand,
-              hint: 'Maruti Suzuki',
-              onTap: () => _showBrandSelector(),
-              showGreenBorder: true,
-            ),
-            
-            SizedBox(height: 20),
-            
-            // Model Input
-            Text(
-              'Enter vehicle Model',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF00A83F), width: 1.5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Alto 800',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Vehicle Type Selector
+              Text(
+                'Choose the vehicle Type*',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
                 ),
-                onChanged: (value) => setState(() => selectedModel = value),
               ),
-            ),
-            
-            SizedBox(height: 20),
-            
-            // Issue Type Input
-            Text(
-              'Enter Issue Type',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-
+              SizedBox(height: 8),
+              _buildDropdown(
+                value: selectedVehicleType,
+                hint: 'Car',
+                onTap: () => _showVehicleTypeSelector(),
+                showGreenBorder: true,
+                hasError: vehicleTypeError != null,
               ),
-            ),
-            SizedBox(height: 8),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF00A83F), width: 1.5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Engine not starting',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+              if (vehicleTypeError != null) _buildErrorText(vehicleTypeError!),
+              
+              SizedBox(height: 20),
+              
+              // Brand Selector
+              Text(
+                'Choose vehicle Brand*',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
                 ),
-                onChanged: (value) => setState(() => selectedIssue = value),
               ),
-            ),
-            
-            SizedBox(height: 20),
-            
-            // Description
-            Text(
-              'Description',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
+              SizedBox(height: 8),
+              _buildDropdown(
+                value: selectedBrand,
+                hint: 'Maruti Suzuki',
+                onTap: () => _showBrandSelector(),
+                showGreenBorder: true,
+                hasError: brandError != null,
               ),
-            ),
-            SizedBox(height: 8),
-            Container(
-              height: 100,
-              decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF00A83F), width: 1.5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: TextField(
-                maxLines: 4,
-                decoration: InputDecoration(
-                  hintText: 'Write your description here',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(12),
+              if (brandError != null) _buildErrorText(brandError!),
+              
+              SizedBox(height: 20),
+              
+              // Model Input
+              Text(
+                'Enter vehicle Model*',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
                 ),
-                onChanged: (value) => setState(() => description = value),
               ),
-            ),
-            
-            SizedBox(height: 20),
-            
-            // Image Upload
-            Text(
-              'Upload Problem Image',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            GestureDetector(
-              onTap: _pickImage,
-              child: Container(
-                height: 120,
-                width: double.infinity,
+              SizedBox(height: 8),
+              Container(
+                height: 50,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.grey.shade300,
-                    style: BorderStyle.solid,
-                    width: 2,
+                    color: modelError != null ? Colors.red : Color(0xFF00A83F),
+                    width: 1.5
                   ),
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey.shade50,
                 ),
-                child: _image != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.file(
-                          _image!,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity,
-                        ),
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.image_outlined,
-                            size: 40,
-                            color: Colors.grey.shade600,
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Upload Image',
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
+                child: TextField(
+                  controller: _modelController,
+                  decoration: InputDecoration(
+                    hintText: 'Alto 800',
+                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedModel = value;
+                      if (value.trim().isNotEmpty) modelError = null;
+                    });
+                  },
+                ),
               ),
-            ),
-            
-            Spacer(),
-            
-            // Submit Button
-            Container(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle find mechanic action
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF00A83F),
-                  shape: RoundedRectangleBorder(
+              if (modelError != null) _buildErrorText(modelError!),
+              
+              SizedBox(height: 20),
+              
+              // Issue Type Input
+              Text(
+                'Enter Issue Type*',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: issueError != null ? Colors.red : Color(0xFF00A83F),
+                    width: 1.5
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: TextField(
+                  controller: _issueController,
+                  decoration: InputDecoration(
+                    hintText: 'Engine not starting',
+                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedIssue = value;
+                      if (value.trim().isNotEmpty) issueError = null;
+                    });
+                  },
+                ),
+              ),
+              if (issueError != null) _buildErrorText(issueError!),
+              
+              SizedBox(height: 20),
+              
+              // Description (Optional)
+              Text(
+                'Description',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xFF00A83F), width: 1.5),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: TextField(
+                  controller: _descriptionController,
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                    hintText: 'Write your description here (Optional)',
+                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(12),
+                  ),
+                  onChanged: (value) => setState(() => description = value),
+                ),
+              ),
+              
+              SizedBox(height: 20),
+              
+              // Image Upload
+              Text(
+                'Upload Problem Image*',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 8),
+              GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  height: 120,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: imageError != null ? Colors.red : Colors.grey.shade300,
+                      style: BorderStyle.solid,
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
+                    color: Colors.grey.shade50,
                   ),
+                  child: _image != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.file(
+                            _image!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.image_outlined,
+                              size: 40,
+                              color: imageError != null ? Colors.red : Colors.grey.shade600,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Upload Image',
+                              style: TextStyle(
+                                color: imageError != null ? Colors.red : Colors.grey.shade600,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                 ),
-                child: Text(
-                  'Find Mechanic',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+              ),
+              if (imageError != null) _buildErrorText(imageError!),
+              
+              SizedBox(height: 20),
+              
+              // Submit Button
+              Container(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF00A83F),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Text(
+                    'Find Mechanic',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 20),
-          ],
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildErrorText(String error) {
+    return Padding(
+      padding: EdgeInsets.only(top: 4),
+      child: Text(
+        error,
+        style: TextStyle(
+          color: Colors.red,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -292,6 +387,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
     required String hint,
     required VoidCallback onTap,
     bool showGreenBorder = false,
+    bool hasError = false,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -300,7 +396,9 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
         padding: EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           border: Border.all(
-            color: showGreenBorder ? Color(0xFF00A83F) : Colors.grey.shade300,
+            color: hasError 
+                ? Colors.red 
+                : (showGreenBorder ? Color(0xFF00A83F) : Colors.grey.shade300),
             width: showGreenBorder ? 1.5 : 1,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -335,7 +433,10 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
           vehicleTypes: vehicleTypes,
           selectedType: selectedVehicleType,
           onTypeSelected: (type) {
-            setState(() => selectedVehicleType = type);
+            setState(() {
+              selectedVehicleType = type;
+              vehicleTypeError = null; // Clear error when selection is made
+            });
             Navigator.pop(context);
           },
         ),
@@ -354,6 +455,8 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
             setState(() {
               selectedBrand = brand;
               selectedModel = null; // Reset model when brand changes
+              _modelController.clear(); // Clear model text field
+              brandError = null; // Clear error when selection is made
             });
             Navigator.pop(context);
           },
@@ -368,10 +471,18 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
       if (pickedFile != null) {
         setState(() {
           _image = File(pickedFile.path);
+          imageError = null; // Clear error when image is selected
         });
       }
     } catch (e) {
       print('Error picking image: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error picking image. Please try again.'),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 3),
+        ),
+     );
     }
   }
 }
@@ -422,7 +533,7 @@ class VehicleTypeSelectorScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Choose the vehicle Type',
+              'Choose the vehicle Type*',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -492,7 +603,7 @@ class VehicleTypeSelectorScreen extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Find Mechanic',
+                  'Select',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -547,7 +658,7 @@ class BrandSelectorScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Choose the vehicle Type',
+              'Choose the vehicle Type*',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -558,7 +669,7 @@ class BrandSelectorScreen extends StatelessWidget {
             _buildDropdown('Car'),
             SizedBox(height: 20),
             Text(
-              'Choose vehicle Brand',
+              'Choose vehicle Brand*',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -617,7 +728,7 @@ class BrandSelectorScreen extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Find Mechanic',
+                  'Select',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
