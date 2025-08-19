@@ -459,8 +459,8 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close dialog
-                      GoRouter.of(context)
-                          .go('/home'); // Go back to previous screen
+                      Navigator.of(context).pop(); // Close dialog
+                      // Go back to previous screen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -472,7 +472,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                       elevation: 0,
                     ),
                     child: const Text(
-                      'Back Home',
+                      'Back',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
